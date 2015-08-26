@@ -58,10 +58,25 @@ def get_summed_cols():
     return outtext
       
 # Declaration of Bounds
-
+def get_bounds():
+    outtext = ''
+    for i in range(rows):
+        temp = ''
+        for j in range(cols):
+            temp += ' 0 <= x' + str(i+1) + '_' + str(j+1) + ' <= 1\n'
+        outtext += temp    
+    return outtext
+    
 # Declaration of Decision Variables (form can be: Binary, Integer, etc.)
 # In this case decision variables are General.
-
+def get_decision_variables():
+    outtext = ''
+    for i in range(1, rows+1):
+        temp = ''
+        for j in range(1, cols+1):
+            temp += ' x' + str(i) + '_' + str(j) + '\n'
+        outtext += temp
+    return outtext
 
 
 #    3. DATA READS & VARIABLE DECLARATION
@@ -91,7 +106,7 @@ text += get_summed_cols()
 text += '\n'
 # Declaration of Bounds
 text += 'Bounds\n' 
-#text += get_bounds_trans()
+text += get_bounds()
 text += '\n'
 # Declaration of Decision Variables form: Binaries
 text += 'Binaries\n'
