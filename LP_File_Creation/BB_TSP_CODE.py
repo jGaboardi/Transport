@@ -57,7 +57,6 @@ def get_summed_cols():
         outtext += temp[:-2] + '= 1\n'
     return outtext
       
-      
 # Declaration of Bounds
 
 # Declaration of Decision Variables (form can be: Binary, Integer, etc.)
@@ -92,11 +91,11 @@ text += get_summed_cols()
 text += '\n'
 # Declaration of Bounds
 text += 'Bounds\n' 
-#text += get_bounds_trans(Cij)
+#text += get_bounds_trans()
 text += '\n'
-# Declaration of Decision Variables form: Generals
-text += 'Generals\n'
-#text += get_shipped_decision_variables_trans(Cij)
+# Declaration of Decision Variables form: Binaries
+text += 'Binaries\n'
+#text += get_decision_variables()
 text += '\n'
 text += 'End\n'
 text += "'''\n"
