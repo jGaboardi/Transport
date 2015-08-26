@@ -42,7 +42,7 @@ def get_summed_rows():
         counter = counter + 1
         temp = ' c' + str(counter) + ':  '
         for j in range(cols):
-            temp += 'x' + str(j+1) + '_' + str(i+1) + ' + '
+            temp += 'x' + str(i+1) + '_' + str(j+1) + ' + '
         outtext += temp[:-2] + '= 1\n'
     return outtext
 #Add Assignment Constraints by summed columns x_ji  
@@ -53,7 +53,7 @@ def get_summed_cols():
         counter = counter + 1
         temp = ' c' + str(counter) + ':  '
         for i in range(rows):
-            temp += 'x' + str(j+1) + '_' + str(i+1) + ' + '
+            temp += 'x' + str(i+1) + '_' + str(j+1) + ' + '
         outtext += temp[:-2] + '= 1\n'
     return outtext
       
