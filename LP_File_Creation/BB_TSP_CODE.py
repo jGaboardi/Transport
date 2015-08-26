@@ -110,7 +110,7 @@ text += get_bounds()
 text += '\n'
 # Declaration of Decision Variables form: Binaries
 text += 'Binaries\n'
-#text += get_decision_variables()
+text += get_decision_variables()
 text += '\n'
 text += 'End\n'
 text += "'''\n"
