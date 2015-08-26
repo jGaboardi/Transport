@@ -137,6 +137,6 @@ text += "© James Gaboardi, 2015"
 
 #   5. CREATE & WRITE .lp FILE TO DISK
 # Fill path name  --  File name must not have spaces.
-outfile = open('/path/name.lp', 'w')
+outfile = open('name.lp', 'w')
 outfile.write(text)
 outfile.close()
