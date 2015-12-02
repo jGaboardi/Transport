@@ -63,12 +63,12 @@ def GuTransProb():
     # Add Supply Constraints
     for orig in client_nodes:
         m.addConstr(gbp.quicksum(client_var[dest][orig] 
-                            for dest in client_nodes) - Si[orig] == 0, 
+                            for dest in client_nodes) - Si[orig] <= 0,
                             'Supply_Constraint_%d' % orig)
     # Add Demand Constraints
     for orig in client_nodes:
         m.addConstr(gbp.quicksum(client_var[orig][dest] 
-                            for dest in client_nodes) - Dj[orig] == 0, 
+                            for dest in client_nodes) - Dj[orig] >= 0,
                             'Demand_Constraint_%d' % orig)
     
     #       5. Optimize and Print Results
