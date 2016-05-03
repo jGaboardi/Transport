@@ -24,13 +24,13 @@ import numpy as np
 import gurobipy as gbp
 import time
 t1 = time.time()
-
-def GuTSP():
+np.random.seed(352)
+def GuTSP(nodes, min_cost, max_cost):
     #     1. Read In (or Create)Data
     # CREATE
     # Cost Matrix
-    Cij = np.random.randint(1, 5, 81)
-    Cij = Cij.reshape(9,9)
+    Cij = np.random.randint(min_cost, max_cost, nodes**2)
+    Cij = Cij.reshape(nodes,nodes)
     # Cost Sum
     CijSum = np.sum(Cij)
     
@@ -81,22 +81,23 @@ def GuTSP():
     print '    | Avg. Value / Arc ------------------------- ', avg
     print '    | Total Network Travel Cost ---------------- ', CijSum
     print '    | Real Time to Optimize (sec.) ------------- ', t2
-    print '    | Cij ', len(Cij)*' ↓' 
-    for i in Cij:
-        print '    |  -- ', i
+    print '    | '
+    print '    | Cij ', len(Cij)*' ↓' , '        Tour by Node Order'
     NoP = []
     for v in m.getVars():
         if v.x > 0:
             var = '%s' % v.VarName
             NoP.append(var)
-            print '    |                                            ', var
-    print '    | Tour by Node Order -----------------------  ^^^^ '
+    
+    for i in range(len(NoP)):
+        print '    |  -- ', Cij[i], ' --    ', NoP[i]
+    print '    |                               ^^^^ Tour by Node Order'
     print '**********************************************************************'
     print ' -- Branch and Bound Directed Traveling Salesperson Problem -- '
-    m.write('path.lp')
+    m.write('path_Gurobi_TSP.lp')
     
 try:
-    GuTSP()
+    GuTSP(100,5,900)
     print '\nJames Gaboardi, 2015'
 except Exception as e:
     print e
