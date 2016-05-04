@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 '''
 GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
@@ -5,95 +8,119 @@ GNU LESSER GENERAL PUBLIC LICENSE
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 '''
+
 # Building and Optimizing The Transportation Problem in
 #        Python/cplex.CPLEX
-# Change dimensions of Cij and the Facility Constraint for varying
-#        spatial extents
 
 import numpy as np
 import cplex as cp
 import time
 t1 = time.time()
+np.random.seed(352)
 
-#     1. Read In Data
-Cij = np.array([4,5,4,10,6,3,3,5,8])
-Cij = Cij.reshape(3,3)
-rows, cols = Cij.shape
-Si = np.array([100,130,140])
-Si = Si.reshape(3,1)
-Dj = np.array([150,100,120])
-Dj = Dj.reshape(3,1)
-client_nodes = range(len(Cij))
+def Cplex_TransProb(Cij, Si, Dj):
+    # Reshape Data
+    
+    Cij = Cij.reshape(matrix_rows,matrix_cols)
+    Si = Si.reshape(matrix_rows,1)
+    Dj = Dj.reshape(matrix_cols,1)
 
-# Indices & Variable Names
-nodes = len(Cij)
-Nodes = range(len(Cij))
-all_nodes = len(Cij) * len(Cij)
-ALL_nodes = range(all_nodes)
-x = 'x'
-cli_var = []
-for i in Nodes:
-    for j in Nodes:
-        temp = x + str(i+1) + '_' + str(j+1)
-        cli_var.append(temp)
-client_var = np.array(cli_var)
-client_var = client_var.reshape(3,3)
+    # Indices & Variable Names
+    supply_nodes = len(Cij)
+    demand_nodes = len(Cij[0])
+    supply_nodes_range = range(len(Cij))
+    demand_nodes_range = range(len(Cij[0]))
+    all_nodes_len = len(Cij) * len(Cij[0])
+    ALL_nodes_range = range(all_nodes_len)
+    
+    x = 'x'
+    desc_var = []
+    for i in supply_nodes_range:
+        for j in demand_nodes_range:
+             desc_var.append(x + str(i+10001) + '_' + str(j+10001))
+    descision_var = np.array(desc_var)
+    descision_var = descision_var.reshape(matrix_rows,matrix_cols)
+   
+    # Create Model
+    m = cp.Cplex()
+    m.set_problem_name('\n -- The Transportation Problem -- ')   # Problem Name
+    print m.get_problem_name()
+    m.set_problem_type(m.problem_type.LP)         # Problem Type  ==>  Linear Programming
+    m.parameters.emphasis.mip.set(2)              # Set MIP Emphasis to '2' --> Optimal
+    print m.parameters.get_changed()
+    print '\nProblem Type\n    ' + str(m.problem_type[m.get_problem_type()])
+    m.objective.set_sense(m.objective.sense.minimize)  # ==>  Minimize
+    print 'Objective Sense\n    ' + str(m.objective.sense[m.objective.get_sense()])
+    
+    # Add Client Decision Variables
+    m.variables.add(names = [desc_var[i] for i in ALL_nodes_range],  
+                            obj = [Cij[i][j] for i in supply_nodes_range 
+                                             for j in demand_nodes_range],
+                            types = ['C'] * all_nodes_len)
 
-#     2. Create Model and Add Variables
-# Create Model
-m = cp.Cplex()
-# Problem Name
-m.set_problem_name('\n -- The Transportation Problem -- ')
-print m.get_problem_name()
-# Problem Type  ==>  Linear Programming
-m.set_problem_type(m.problem_type.LP)
-# Set MIP Emphasis to '2' --> Optimal
-m.parameters.emphasis.mip.set(2)
-print m.parameters.get_changed()
-print '\nProblem Type\n    ' + str(m.problem_type[m.get_problem_type()])
-# Objective Function Sense  ==>  Minimize
-m.objective.set_sense(m.objective.sense.minimize)
-print 'Objective Sense\n    ' + str(m.objective.sense[m.objective.get_sense()])
-# Add Client Decision Variables
-m.variables.add(names = [cli_var[i] for i in ALL_nodes],  
-                        obj = [Cij[i][j] for i in Nodes for j in Nodes],
-                        types = ['C'] * all_nodes)
+    # Add Supply Constraints
+    for orig in supply_nodes_range:      
+        supply_constraints = cp.SparsePair(ind = [descision_var[orig][dest] 
+                                                for dest in demand_nodes_range],                           
+                                                val = [1] * demand_nodes)
+        m.linear_constraints.add(lin_expr = [supply_constraints],                 
+                                    senses = ['L'], 
+                                    rhs = Si[orig])
+    
+    # Add Demand Constraints
+    for orig in demand_nodes_range:       
+        demand_constraints = cp.SparsePair(ind = [descision_var[dest][orig] 
+                                                for dest in supply_nodes_range],                           
+                                                val = [1] * supply_nodes)
+        m.linear_constraints.add(lin_expr = [demand_constraints],                 
+                                    senses = ['G'], 
+                                    rhs = Dj[orig])
 
-#    3. Add Constraints 
-#Add Supply Constraints
-for orig in Nodes:       
-    supply_constraints = cp.SparsePair(ind = [client_var[dest][orig] 
-                                            for dest in Nodes],                           
-                                            val = [1] * nodes)
-    m.linear_constraints.add(lin_expr = [supply_constraints],                 
-                                senses = ['E'], 
-                                rhs = Si[orig]);
+    #  Optimize and Print Results
+    m.solve()
+    t2 = round(time.time()-t1,3)
+    solution = m.solution
+    
+    print '******************************************************************************'
+    print '| From SUPPLY Facility to DEMAND Facility x(Si)_(Dj) shipping # of units  '
+    print '| ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓'
+    print '|'
+    selected = {}
+    Closed = []
+    for f in desc_var:
+        if solution.get_values(f) > 0:
+            units = '%i' % solution.get_values(f)
+            selected[f] = solution.get_values(f)
+            print '|  Supply Facility #', f[1:6], 'is shipping', units, \
+                                                'units to Demand Facility #', f[-5:]
+        else:
+            Closed.append([f[1:6], f[-5:]])
+    print '******************************************************************************' 
+    print 'Total cost                   = ', solution.get_objective_value()
+    print 'Solution status              = ', solution.get_status(), ':', \
+                                        solution.status[solution.get_status()]
+    print 'Supply Facilites             = ', len(Si)
+    print 'Demand Facilites             = ', len(Dj)
+    print 'Total Potential Combinations = ', len(Si)*len(Dj)
+    print 'Actual Combinations          = ', len(selected) 
+    print 'Real Time to Optimize (sec.) = ', t2, '\n\n'
+    m.write('pathCPLEX_TransSimplex.lp')
 
-#Add Demand Constraints
-for orig in Nodes:       
-    demand_constraints = cp.SparsePair(ind = [client_var[orig][dest] 
-                                            for dest in Nodes],                           
-                                            val = [1] * nodes)
-    m.linear_constraints.add(lin_expr = [demand_constraints],                 
-                                senses = ['E'], 
-                                rhs = Dj[orig]);
+#########################################################################################
+# Data can be read-in or simulated
+    
+Supply = np.random.randint(50,200,5)   # Vector of Units Supplied
+Demand = np.random.randint(25,30,7)    # Vector of Units Demanded
 
-#    4. Optimize and Print Results
-m.solve()
-solution = m.solution
-# solution.get_status() returns an integer code
-print 'Solution status = ' , solution.get_status(), ':',
-# the following line prints the corresponding string
-print solution.status[solution.get_status()]
-# Display solution.
-print 'Total cost = ' , solution.get_objective_value()
-print 'Determination Time = ', m.get_dettime(), 'ticks'
-print 'Real Time to Optimize (sec.): *', time.time()-t1
-for f in cli_var:
-    if (solution.get_values(f) >
-        m.parameters.mip.tolerances.integrality.get()):
-        print '    Facility %s is open and ships' % f, solution.get_values(f), 'units'  
-    else:
-        print '    Facility %s is closed' % f     
-print '\n-----\nJames Gaboardi, 2015'
-m.write('/path.lp')
+matrix_rows = len(Supply)                # Supply (i) x Demand (j)
+matrix_cols = len(Demand)
+
+Cost_Matrix = np.random.randint(3, 
+                                50, 
+                                matrix_rows*matrix_cols)
+
+# Call Function   
+Cplex_TransProb(Cij=Cost_Matrix, Si=Supply, Dj=Demand)
+
+print '******************************************************************************'
+print ' James Gaboardi, 2016\n\n'
