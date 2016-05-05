@@ -56,8 +56,7 @@ def GuTransProb(Cij, Si, Dj):
     # Add Demand Constraints
     for orig in demand_nodes_range:  
         m.addConstr(gbp.quicksum(descision_var[dest][orig] 
-                            for dest in supply_nodes_range) - Dj[orig] >= 0,
-                            'Demand_Constraint_%d' % orig)
+                            for dest in supply_nodes_range) - Dj[orig] >= 0)
     
     #  Optimize and Print Results
     try:
