@@ -1,3 +1,208 @@
 
 Gurobi 6.0.2 (mac64) logging started Sat Aug 15 22:44:32 2015
 
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 19:11:48 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [0e+00, 0e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      16    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved in 16 iterations and 0.02 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 19:15:23 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [0e+00, 0e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      16    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved in 16 iterations and 0.01 seconds
+Optimal objective  0.000000000e+00
+Parameter MIPFocus unchanged
+   Value: 2  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [0e+00, 0e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      16    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved in 16 iterations and 0.01 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 19:35:25 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [0e+00, 0e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      16    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved in 16 iterations and 0.01 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 19:47:15 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [6e+11, 1e+15]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    9.9045719e+16   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  9.904571891e+16
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 19:53:54 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
+Parameter MIPFocus unchanged
+   Value: 2  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
+Parameter MIPFocus unchanged
+   Value: 2  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
+Parameter MIPFocus unchanged
+   Value: 2  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
+Parameter MIPFocus unchanged
+   Value: 2  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
+
+Gurobi 6.5.0 (mac64) logging started Thu May  5 20:01:03 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.00s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.01 seconds
+Optimal objective  1.538603435e+02
