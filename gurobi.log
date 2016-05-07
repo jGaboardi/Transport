@@ -206,3 +206,23 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
 
 Solved in 11 iterations and 0.01 seconds
 Optimal objective  1.538603435e+02
+
+Gurobi 6.5.0 (mac64) logging started Fri May  6 11:18:24 2016
+
+Changed value of parameter MIPFocus to 2
+   Prev: 0  Min: 0  Max: 3  Default: 0
+Optimize a model with 15 rows, 50 columns and 100 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-04, 2e+00]
+  Bounds range    [0e+00, 0e+00]
+  RHS range       [1e+01, 2e+02]
+Presolve time: 0.01s
+Presolved: 15 rows, 50 columns, 100 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   3.930000e+02   0.000000e+00      0s
+      11    1.5386034e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 11 iterations and 0.02 seconds
+Optimal objective  1.538603435e+02

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
 GNU LESSER GENERAL PUBLIC LICENSE
@@ -6,8 +7,12 @@ GNU LESSER GENERAL PUBLIC LICENSE
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 '''
-# Building and Optimizing The Transportation Problem in
-#        Python/Gurobi[gurobipy]
+
+
+
+
+
+# Building and Optimizing The Transportation Problem in Python/Gurobi[gurobipy]
 
 import numpy as np
 import gurobipy as gbp
@@ -59,11 +64,8 @@ def GuTransProb(Cij, Si, Dj):
                             for dest in supply_nodes_range) - Dj[orig] >= 0)
     
     #  Optimize and Print Results
-    try:
-        m.optimize()
-    except Exception as e:
-        print e
-        
+    m.optimize()
+    m.write('path.lp')
     t2 = time.time()-t1
     print '******************************************************************************'
     print '| From SUPPLY Facility to DEMAND Facility x(Si)_(Dj) shipping # of units  '
@@ -91,7 +93,8 @@ def GuTransProb(Cij, Si, Dj):
     print '    | Real Time to Optimize (sec.) -------- ', t2
     print '******************************************************************************'
     print '  --  The Transportation Simplex with Gurobi --'
-    m.write('path.lp')
+    print '  --  James Gaboardi, 2016  --'
+    
     
 #########################################################################################
 # Data can be read-in or simulated
@@ -106,10 +109,8 @@ Cost_Matrix = np.random.randint(3,
                                 50, 
                                 matrix_rows*matrix_cols)
 # Call Function   
-try:
-    GuTransProb(Cij=Cost_Matrix, Si=Supply, Dj=Demand)
-    print '\nJames Gaboardi, 2016'
-    print '*******************************************************************'\
-                                        '**********************\n\n'
-except Exception as e:
-    print e
+GuTransProb(Cij=Cost_Matrix, Si=Supply, Dj=Demand)
+'''
+James Gaboardi, 2016'
+'''
+                                    '**********************\n\n'
